@@ -1,0 +1,5 @@
+"url path","algo",,,,,,,,"comment"
+"/home/heating/uk","new",,,,,,,,"no profile item values defs with units"
+"/transport/bus/generic","changed","distancePerJourney","km","NULL","Distance per journey","distancePerJourney","km","NULL",
+"/transport/train/generic","changed","distancePerJourney","km","NULL","Distance per journey","distancePerJourney","km","NULL",
+"/transport/taxi/perpassenger/generic","new","distancePerJourney","km","NULL","Distance per journey","distancePerJourney","km","NULL",

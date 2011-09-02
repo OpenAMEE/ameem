@@ -1,0 +1,36 @@
+#!/bin/bash
+itemdefs=`find ../../../api_csvs/transport/ ../../../api_csvs/home -name itemdef.csv`;
+echo > items
+for file in $itemdefs; do
+    cat $file >> items
+done
+gawk '
+BEGIN {
+FS=","
+OFS=","
+}
+$1=="name"&&$2!="path"{
+    category=$2;
+}
+$3=="DECIMAL"&&$4=="FALSE"&&$5=="FALSE"{
+    print $2,category,$1;
+}
+$3=="INTEGER"&&$4=="FALSE"&&$5=="FALSE"{
+    print $2,category,$1;
+}' < items > paths
+sort paths | gawk '
+BEGIN {
+FS=","
+OFS=","
+print "oldPath,newPath,newUnit,newPerUnit,old Name, new Name";
+}
+currentItem==$1{
+listOfCategories=listOfCategories ";" $2
+}
+currentItem!=$1{
+print currentItem,currentItem," "," ",currentName,currentName,listOfCategories
+currentItem=$1;currentName=$3;listOfCategories=$2}
+END{
+print currentItem,currentItem," "," ",currentName,currentName,listOfCategories
+}
+'

@@ -1,0 +1,24 @@
+oldPath,newPath,newUnit,newPerUnit,old Name, new Name
+
+currencyGBPPerMonth,currencyGBP,,month,Currency GBP Per Month,Currency GBP Per Month
+currencyUSDPerMonth,currencyUSD,,month,currency USD Per Month,currency USD Per Month
+cyclesPerMonth,cycleRate,,month,Cycles Per Month,Cycles Per Month
+distanceKmPerMonth,distance,km,month,Distance Km Per Month,Distance Km Per Month
+distanceKmPerYear,distance,km,year,Distance Km Per Year,Distance Km Per Year
+hoursPerMonth,timeOn,hours,month,Hours Per Month,Hours Per Month
+kgPerMonth,massPerTime,kg,month,kg Per Month,kg Per Month
+kmPerLitre,fuelConsumption,km,litre,km per litre,km per litre
+kmPerLitreOwn,ownFuelConsumption,km,litre,km per litre own,km per litre own
+kWhGeneratedPerMonth,generatedEnergy,kWh,month,kWh generated per month,kWh generated per month
+kWhPerMonth,energyConsumption,kWh,month,kWh per month,kWh per month
+kWhReadingCurrent,currentReading,kWh,,kWh reading current,kWh reading current
+kWhReadingLast,lastReading,kWh,,kWh reading last,kWh reading last
+lat1,lat1,degrees,,Lat1,Lat1
+lat2,lat2,degrees,,Lat2,Lat2
+litresPerMonth,volumePerTime,litres,month,Litres Per Month,Litres Per Month
+long1,long1,degrees,,Long1,Long1
+long2,long2,degrees,,Long2,Long2
+minutesPerDay,timeOn,minutes,day,minutes per day,minutes per day
+numberOfDeliveries,deliveries,,?,Number of deliveries,Number of deliveries #! NOT UNDERSTOOD - QUERY Andrew
+usagePerQuarter,usage,,quarter,Usage Per Quarter,Usage Per Quarter
+journeysPerYear,journeys,,year,Journeys Per Year,Journeys Per Year

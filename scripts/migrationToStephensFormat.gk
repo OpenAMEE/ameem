@@ -1,0 +1,29 @@
+#!/usr/bin/gawk  -f
+BEGIN {
+      FS=",";
+      OFS=",";
+}
+{
+#OLD_PATH, OLD_UNIT, OLD_PER_UNIT, NEW_NAME, NEW_PATH, NEW_UNIT, NEW_PER_UNIT
+    gsub(/.+/,"\"&\"",$1);
+    gsub(/.+/,"\"&\"",$2);
+    gsub(/.+/,"\"&\"",$3);
+    gsub(/.+/,"\"&\"",$4);
+    gsub(/.+/,"\"&\"",$5);
+    gsub(/.+/,"\"&\"",$6);
+    gsub(/.+/,"\"&\"",$7);
+    gsub(/.+/,"\"&\"",$8);
+    gsub(/$^/,"NULL",$3);
+    gsub(/$^/,"NULL",$4);
+    gsub(/$^/,"NULL",$7);
+    gsub(/$^/,"NULL",$8);
+    gsub(/kWh/,"kW*h",$3);
+    gsub(/kWh/,"kW*h",$4);
+    gsub(/kWh/,"kW*h",$7);
+    gsub(/kWh/,"kW*h",$8);
+    gsub(/litre/,"L",$3);
+    gsub(/litre/,"L",$4);
+    gsub(/litre/,"L",$7);
+    gsub(/litre/,"L",$8);
+    print $1,$3,$4,$6,$2,$7,$8
+}

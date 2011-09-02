@@ -1,0 +1,18 @@
+currencyGBPPerMonth,currencyGBP,,month,Currency GBP Per Month,Currency GBP,,year
+currencyUSDPerMonth,currencyUSD,,month,currency USD Per Month,currency USD,,year
+cyclesPerMonth,cycleRate,,month,Cycles Per Month,Cycle Rate,,year
+distanceKmPerMonth,distance,km,month,Distance Km Per Month,Distance,km,year
+distanceKmPerYear,distance,km,year,Distance Km Per Year,Distance,km,year
+hoursPerMonth,hoursOn,,month,Hours Per Month,Time On,,year
+kgPerMonth,massPerTime,kg,month,kg Per Month,Mass Per Time,kg,year
+kmPerLitre,fuelConsumption,km,litre,km per litre,Fuel Consumption,km,litre
+kmPerLitreOwn,ownFuelConsumption,km,litre,km per litre own,Own Fuel Consumption,km,litre
+kWhGeneratedPerMonth,generatedEnergy,kWh,month,kWh generated per month,Generated Energy,kWh,year
+kWhPerMonth,energyConsumption,kWh,month,kWh per month,Energy Consumption,kWh,year
+kWhReadingCurrent,currentReading,kWh,,kWh reading current,Current Reading,kWh,
+kWhReadingLast,lastReading,kWh,,kWh reading last,Last Reading,kWh,
+litresPerMonth,volumePerTime,litre,month,Litres Per Month,Volume Per Time,litre,year
+numberOfDeliveries,deliveries,,year,Number of deliveries,Number of deliveries,,year
+journeysPerYear,journeys,,year,Journeys Per Year,Journeys,,year
+distanceMilesPerMonth,distance,mi,month,distanceMilesPerMonth,distanceMilesPerMonth,km,year
+mpgOwn,ownFuelConsumption,miles,gal,mpgOwn,Fuel Consumption,km,litre

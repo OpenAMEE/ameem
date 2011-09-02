@@ -1,0 +1,20 @@
+Banana:
+  license_link: <a href='DummyLicenseLink'>The banana license</a>
+  comment: Dummy license for testing
+  wikitext: Put further text here, explorer might use it.
+Grapefruit:
+  license_link: <a href='DummyLicenseLink'>The grapefruit license</a>
+  comment: Dummy license for testing
+USGOV:
+  license_link: <a href='http://www.copyright.gov/title17/'>US Government Public Domain</a>
+Crown:
+  license_link: <a href='http://www.opsi.gov.uk/advice/crown-copyright/index'>Crown Copyright (UK)</a>
+Ireland:
+  license_link: <a href='http://www.irishstatutebook.ie/2000/en/act/pub/0028/sec0191.html#partii-chapxix-sec191'>Government Copyright (IE)</a>
+EIA:
+  license_link: <a href='http://tonto.eia.doe.gov/abouteia/copyrights_reuse.cfm'>EIA Public Domain Statement</a>
+Common:
+  license_link: <a href='http://www.opensource.org/licenses/cpl1.0.php'>Common Public License</a>
+EEA:
+  license_link: <a href='http://www.eea.europa.eu/legal/copyright'>EEA Public Domain Statement</a>
+

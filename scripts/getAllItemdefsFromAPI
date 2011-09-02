@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#login
+
+curl  -d"username=admin&password=######" -c cookies "http://admin.stage.co2.dgen.net/auth"
+
+# find out how many pages of UIDs for itemdefs there are
+pages=`curl -b cookies -H "Content-Type: application/x-www-form-urlencoded" -H "Accept: application/xml"  http://admin.stage.co2.dgen.net/environments/5F5887BCF726/itemDefinitions | xpath -q -e "//Pager/LastPage/text()"`
+
+#create list of itemdef uids in temporary file
+# annoyingly the command line xpath doesn't seem to understand the idea of getting the text value of the attribute, so I have to pull it out with a sed. :-(
+echo > defUIDs
+for ((i=1;i<=pages;i++)); do
+    curl -b cookies -H "Content-Type: application/x-www-form-urlencoded" -H "Accept: application/xml"  http://admin.stage.co2.dgen.net/environments/5F5887BCF726/itemDefinitions?page=$i | xpath -q -e "//ItemDefinition/@uid" | sed 's\uid="\\' | sed 's\"\\' >> defUIDs
+done
+
+echo > itemdefs
+#get each itemdef, and pipe output appropriately
+while read line; do
+    echo $line
+    defname=`curl -b cookies -H "Content-Type: application/x-www-form-urlencoded" -H "Accept: application/xml"  http://admin.stage.co2.dgen.net/environments/5F5887BCF726/itemDefinitions/$line/ | xpath -q -e "//Name/text()"`
+    echo "Item:,$defname" >> itemdefs
+    curl -b cookies -H "Content-Type: application/x-www-form-urlencoded" -H "Accept: application/xml"  http://admin.stage.co2.dgen.net/environments/5F5887BCF726/itemDefinitions/$line/itemValueDefinitions | xpath -q -e "//ItemValueDefinition[FromProfile='true'][FromData='false'][ValueDefinition/ValueType='DECIMAL']/Path/text()" >> itemdefs
+    echo >> itemdefs
+done < defUIDs
+
+./tabulate.gk < itemdefs > itemdefsTabulated
+
+# now sort to highlight duplicates
+sort itemdefsTabulated > itemdefsUnique

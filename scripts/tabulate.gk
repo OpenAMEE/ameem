@@ -1,0 +1,7 @@
+#!/usr/bin/gawk  -f
+BEGIN {
+      FS=",";
+      OFS=",";
+}
+/Item:/{Item=$2}
+!/Item:/&&/./{print $0,Item}

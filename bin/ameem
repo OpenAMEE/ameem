@@ -1,0 +1,33 @@
+#! /usr/bin/env ruby
+
+# parse options and command for this ameem
+dir = File.expand_path(File.dirname(__FILE__)+'/../lib')
+$LOAD_PATH << dir unless $LOAD_PATH.include?(dir)
+require 'ameem'
+
+SERVER_SIBLINGS = { 'sci' => 'dev',
+                    'live' => 'stage' }
+
+def run(args)
+  instance = AMEEM.new(args)
+  instance.exec
+  instance.clean
+  return instance
+end
+
+begin
+  instance = run(ARGV.clone)
+  server = instance.options.server_code
+  alt_server = SERVER_SIBLINGS[server]
+  unless alt_server.nil?    
+    unless instance.options.force || ENV['AMEEM_NOPROMPT']
+      print "Also commit to #{alt_server}?[Yes]\n"
+      return if ($stdin.gets=~/[nN]/)  
+    end
+    print "Also committing to #{alt_server}\n"
+    run(ARGV.map{|x| x.gsub(server,alt_server)})
+  end
+rescue RuntimeError => error
+  print error.message+"\n Run ameem --help for usage\n"
+end
+

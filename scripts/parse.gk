@@ -1,0 +1,22 @@
+#!/usr/bin/gawk  -f
+BEGIN {
+      FS=" ";
+      OFS=",";
+      print "path before","path after","units","perUnits"
+}
+$1~/[pP]er/&&$1!~/temperature/&&$1!~/percentage/&&$1!~/permeability/{
+	before=$1; 
+	units=before;
+	gsub(/[pP]er.*/,"",units); 
+	perUnits=before; 
+	gsub(/.*[pP]er/,"",perUnits);
+	print before,units,perUnits
+}
+$1~/[pP]er/&&$1!~/temperature/&&$1!~/percentage/&&$1!~/permeability/{
+	before=$1; 
+	units=before;
+	gsub(/[pP]er.*/,"",units); 
+	perUnits=before; 
+	gsub(/.*[pP]er/,"",perUnits);
+	print before,units,perUnits
+}

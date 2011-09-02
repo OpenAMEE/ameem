@@ -1,0 +1,39 @@
+log4r_config:
+
+  # define all loggers ...
+  loggers:
+    - name      : Main
+      level     : DEBUG
+      additive  : 'false'
+      trace     : 'false'      
+      outputters:
+        - stderr
+        - mainlogfile
+    - name      : Gem
+      level     : DEBUG
+      additive  : 'false'
+      trace     : 'false'
+      outputters:
+        - stderr
+        - mainlogfile
+
+  # define all outputters (incl. formatters)      
+  outputters:
+    - type     : StderrOutputter
+      name     : stderr
+      level    : WARN
+      formatter:
+        date_pattern: '%y%m%d %H:%M:%S'
+        pattern     : '%d %c %l: %m '
+        type        : PatternFormatter
+
+    - type        : RollingFileOutputter
+      name        : mainlogfile
+      trunc       : 'false'
+      level       : DEBUG
+      trunc       : 86400
+      filename    : "#{HOME}/ameem.log"
+      formatter   :
+        date_pattern: '%y%m%d %H:%M:%S'
+        pattern     : '%d %c %l: %m'
+        type        : PatternFormatter

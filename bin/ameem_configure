@@ -1,0 +1,16 @@
+#! /usr/bin/env ruby
+require 'yaml'
+
+install_path=File.expand_path(File.dirname(File.dirname(__FILE__)))
+p "Setting up ameem logs at /var/log/ameem"
+system "mkdir -p /var/log/ameem"
+system "chmod a+rw /var/log/ameem/"
+
+p "Installing ameem configuration to ~/.ameem, with logs to ~/.ameem/logs/"
+p "Remove ~/.ameem/logs/ to log to /var/log/ameem/ instead"
+system "mkdir -p ~/.ameem"
+system "mkdir -p ~/.ameem/logs"
+
+system "cp -rn #{File.join(install_path,'config','*')} ~/.ameem"
+system "mv -n ~/.ameem/ameem.example.yml ~/.ameem/ameem.yml"
+system "chmod -R a+rw ~/.ameem"

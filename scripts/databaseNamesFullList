@@ -1,0 +1,41 @@
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/bus/generic,Bus Generic
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/car/bands/ireland,Car Bands
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/minibus,Car Generic
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/car/generic/electric,Car Generic Electric
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/car/specific,Car Specific
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/car/specific/uk,Car Specific UK
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/car/specific/us,Car Specific US
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/appliances/computers/generic,Computers Generic
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/appliances/cooking,Cooking
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/energy/electricityISO,Electricity
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/energy/quantity,Energy Quantity
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/energy/uk/price,Energy UK Price
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/energy/uk/seasonal,Energy UK Seasonal
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/energy/uk/suppliers,Energy UK Suppliers
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/energy/us/price,Energy US Price
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/energy/us/state,Energy US State
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/appliances/entertainment/generic,Entertainment Generic
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/heating,Heating
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/heating/ustest,Heating US
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/appliances/cooking/hob,Hob
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/energy/insulation,Insulation
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/appliances/kitchen/generic,Kitchen Generic
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/lighting,Lighting
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/plane/generic/airports/codes,Major airport codes
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/plane/generic/airports/countries,Major airports
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/motorcycle/generic,Motorcycle Generic
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/appliances/cooking/oven,Oven
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/plane/generic/passengerclass,Plane Class
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/plane,Plane Generic
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/energy/uk/reductions,Reduction
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/energy/renewable,Renewable
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/ship,Ship Generic
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/taxi/generic,Taxi Generic
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/appliances/televisions/generic,Televisions Generic
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/train/generic,Train Generic
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/metadata,Transport metadata
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/transport/other,Transport Other
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/waste,Waste
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/water,Water
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/water/reductions,Water Reductions
+/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs/home/water/usage,Water Usage
