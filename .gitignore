@@ -1,2 +1,6 @@
 *.gem
 /nbproject
+
+.DS_Store
+.rakeTasks
+build/
