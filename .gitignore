@@ -1,2 +1,8 @@
 *.gem
 /nbproject
+
+.DS_Store
+.rakeTasks
+build/
+.idea/
+*.iml

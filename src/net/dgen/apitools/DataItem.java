@@ -215,7 +215,6 @@ public class DataItem {
 
     String getPostXML() {
         String xml = "<DataItem>\n";
-        xml += "<startDate>1970-01-01T00:00:00+0000</startDate>";
         //Stuff doesn't need to be url encoded in XML
         Iterator<String> iter = keyMap.keySet().iterator();
         while (iter.hasNext()) {
