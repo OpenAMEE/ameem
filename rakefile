@@ -4,8 +4,6 @@ require 'spec'
 require 'fileutils'
 require 'spec/rake/spectask'
 require 'rake/gempackagetask'
-gem 'ci_reporter'
-require 'ci/reporter/rake/rspec'
 
 task :default=> [:test,:gem]
 
