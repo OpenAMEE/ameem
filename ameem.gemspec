@@ -13,8 +13,8 @@ $gemspec=Gem::Specification.new do |s|
   s.bindir="#{$root}bin"
   s.executables = ['ameem','ameem_configure']
   s.add_dependency("activesupport", "~> 2.3.5")
-  s.add_dependency("amee","~>2.5.0")
-  s.add_dependency("amee-internal","~>3.6.2")
+  s.add_dependency("amee","~>4.3.1")
+  s.add_dependency("amee-internal","~>5.1.0")
   s.add_dependency("rspec_spinner")
   s.add_dependency("WikiCreole")
   s.add_dependency("log4r")

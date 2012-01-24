@@ -2,8 +2,8 @@
 
 # parse options and command for this ameem
 require 'rubygems'
-gem 'amee','=2.5.1'
-gem 'amee-internal', '=3.6.3'
+gem 'amee','~> 4.3.1'
+gem 'amee-internal', '~> 5.1.0'
 require 'active_support/inflector'
 require 'amee-internal'
 require 'pp'
