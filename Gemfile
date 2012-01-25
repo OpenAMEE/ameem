@@ -9,3 +9,4 @@ gem "rspec_spinner", "= 1.1.3"
 gem "WikiCreole"
 gem "log4r"
 gem "raspell"
+gem 'ci_reporter'

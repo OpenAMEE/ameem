@@ -17,6 +17,9 @@ GEM
     appraisal (0.4.0)
       bundler
       rake
+    builder (3.0.0)
+    ci_reporter (1.6.9)
+      builder (>= 2.1.2)
     flexmock (0.9.0)
     i18n (0.6.0)
     json (1.6.5)
@@ -37,6 +40,7 @@ DEPENDENCIES
   WikiCreole
   amee (>= 4.3.0)
   amee-internal (>= 5.1.0)
+  ci_reporter
   flexmock
   log4r
   raspell
