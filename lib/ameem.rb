@@ -24,7 +24,6 @@ require 'ameem/return_value_definition'
 require 'ameem/xml'
 
 
-
 ItemDefinitionFile='itemdef.csv'
 DataFile='data.csv'
 ReturnValueDefinitionFile='return_values.csv'
