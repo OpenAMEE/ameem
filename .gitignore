@@ -7,3 +7,5 @@ build/
 .idea/
 *.iml
 dist/javadoc
+
+config/ameem.yml
