@@ -420,7 +420,7 @@ public class MyDataCategory {
         return success;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AmeeException {
         int site = DataCategory.LIVE;
         Main.setLogin(args[0]);
         Main.setPassword(args[1]);
