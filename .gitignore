@@ -1,5 +1,4 @@
 *.gem
-/nbproject
 
 .DS_Store
 .rakeTasks
@@ -9,3 +8,5 @@ build/
 dist/javadoc
 
 config/ameem.yml
+
+nbproject/private/private.properties
