@@ -11,3 +11,4 @@ config/ameem.yml
 
 nbproject/private/private.properties
 dist
+gems/
