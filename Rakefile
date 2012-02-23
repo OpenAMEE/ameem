@@ -7,11 +7,12 @@ require 'rake/gempackagetask'
 
 task :default=> [:test,:gem]
 
-file "dist/AMEEM.jar"=>:ant
+file "jars/AMEEM.jar"=>:ant
 
 task :ant do
   FileUtils.cd(File.dirname __FILE__) do
     raise 'Ant task failed' if !system('ant') 
+    cp 'dist/AMEEM.jar', 'jars/AMEEM.jar'
   end
 end
 
@@ -24,4 +25,4 @@ Spec::Rake::SpecTask.new(:test) do |t|
   t.pattern='spec/*_spec.rb'
 end
 
-task :test => "dist/AMEEM.jar"
+task :test => "jars/AMEEM.jar"

@@ -9,7 +9,7 @@ $gemspec=Gem::Specification.new do |s|
   s.has_rdoc = true
   s.authors = ["James Smith", "James Hetherington", "Andrew Berkeley", "Andrew Conway"]
   s.files = FileList["lib/**/*.rb", "bin/*", "[A-Z]*",
-    "dist/AMEEM.jar","dist/lib/*.jar","config/*.yml"].to_a-["config/ameem.yml"]
+    "jars/AMEEM.jar", "jars/*.jar","config/*.yml"].to_a-["config/ameem.yml"]
   s.bindir="#{$root}bin"
   s.executables = ['ameem','ameem_configure']
   s.add_dependency("activesupport", "~> 2.3.5")
