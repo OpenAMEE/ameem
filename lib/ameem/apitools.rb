@@ -6,8 +6,9 @@ module APITools
     test=options.test
     server=options.server
     admin=options.admin_url
-    ccommand="java -jar #{ameem_location}/dist/AMEEM.jar admin #{options.password} #{folder} #{command} #{mode} #{test} #{server} #{admin} #{csv_root} 2>&1"
-    safecommand="java -jar #{ameem_location}/dist/AMEEM.jar admin ####### #{folder} #{command} #{mode} #{test} #{server} #{admin} #{csv_root}"
+    classpath = "-classpath '#{ameem_location}/jars/*'"
+    ccommand="java #{classpath} net.dgen.apitools.DataCategory admin #{options.password} #{folder} #{command} #{mode} #{test} #{server} #{admin} #{csv_root} 2>&1"
+    safecommand="java #{classpath} net.dgen.apitools.DataCategory admin ####### #{folder} #{command} #{mode} #{test} #{server} #{admin} #{csv_root}"
     verbose safecommand
     output = `#{ccommand}`
     if $?==0
