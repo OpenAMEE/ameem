@@ -8,6 +8,7 @@
  */
 package net.dgen.apitools;
 
+import com.amee.client.AmeeException;
 import java.util.*;
 import java.io.*;
 
@@ -99,11 +100,11 @@ public class DataCategory {
         return localMap;
     }
 
-    public void checkAPI() {
+    public void checkAPI() throws AmeeException {
         updateAPI(false);
     }
 
-    public void updateAPI() {
+    public void updateAPI() throws AmeeException {
         updateAPI(true);
     }
 
@@ -125,7 +126,7 @@ public class DataCategory {
      * @param update If true the API will be changed, if false it will
      * just be checked.
      */
-    private void updateAPI(boolean update) {
+    private void updateAPI(boolean update) throws AmeeException {
         if (update) {
             System.err.println("Opening confirmation dialog...");
             //int res = javax.swing.JOptionPane.showConfirmDialog(null, "Are you sure you want to update the API?");
@@ -276,7 +277,7 @@ public class DataCategory {
     }
 
     /** Note: This must be called before checkAPI or updateAPI */
-    public void loadLocalData() {
+    public void loadLocalData() throws AmeeException {
         if (useDataItemUidCache) {
             loadDataItemUidCache();
         }
@@ -519,7 +520,7 @@ public class DataCategory {
         System.err.println("...done");
     }
 
-    private void loadDataItemUidCache() {
+    private void loadDataItemUidCache() throws AmeeException {
         File file = new File(ApiTools.cachePath, saveName + ".csv");
         System.err.println("Loading item cache..." + file.getAbsolutePath());
         BufferedReader br = ApiTools.getBufferedReader(file);
@@ -788,9 +789,9 @@ public class DataCategory {
         return cat;
     }
 
-    public static void main(String[] args) {
-        Main.login = args[0];
-        Main.password = args[1];
+    public static void main(String[] args) throws AmeeException {
+        Main.setLogin(args[0]);
+        Main.setPassword(args[1]);
 
 
         String path = args[2];

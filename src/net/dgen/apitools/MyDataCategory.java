@@ -1,5 +1,6 @@
 package net.dgen.apitools;
 
+import com.amee.client.AmeeException;
 import java.io.File;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
@@ -14,7 +15,7 @@ import net.dgen.apiexamples.Main;
  * @author nalu
  */
 public class MyDataCategory {
-    public static void testCar() {
+    public static void testCar() throws AmeeException {
         path = "/transport/car/generic";
         String key = "fuel=petrol&size=medium";
         String values = "distanceKmPerMonth=1000";
@@ -29,7 +30,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testMotorcycle() {
+    public static void testMotorcycle() throws AmeeException {
         path = "/transport/motorcycle/generic";
         String key = "fuel=petrol&size=medium";
         String values = "distanceKmPerMonth=1000";
@@ -38,7 +39,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testPlane() {
+    public static void testPlane() throws AmeeException {
         path = "/transport/plane/generic";
         String key = "type=long haul&size=one way";
         String values = "journeysPerYear=2";
@@ -59,7 +60,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testKitchen() {
+    public static void testKitchen() throws AmeeException {
         path = "/home/appliances/kitchen/generic";
         String key = "device=kettle&rating=-&age=-&temperature=-";
         String values = "";
@@ -74,7 +75,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testEntertainment() {
+    public static void testEntertainment() throws AmeeException {
         path = "/home/appliances/entertainment/generic";
         String key = "device=Video&rating=DVD";
         String values = "numberOwned=10";
@@ -83,7 +84,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testComputers() {
+    public static void testComputers() throws AmeeException {
         path = "/home/appliances/computers/generic";
         String key = "device=Personal Computers&rating=Desktop";
         String values = "numberOwned=10";
@@ -92,7 +93,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testCooking() {
+    public static void testCooking() throws AmeeException {
         path = "/home/appliances/cooking/hob";
         String key = "type=gas";
         String values = "";
@@ -108,7 +109,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testEnergyQuantity() {
+    public static void testEnergyQuantity() throws AmeeException {
         path = "/home/energy/quantity";
         String key = "type=gas";
         String values = "kWhPerMonth=1000";
@@ -122,7 +123,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testFuelPrice() {
+    public static void testFuelPrice() throws AmeeException {
         path = "/home/energy/uk/price";
         String key = "type=gas&payment=normal";
         String values = "currencyGBPPerMonth=1000";
@@ -137,7 +138,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testHeatingUK() {
+    public static void testHeatingUK() throws AmeeException {
         path = "/home/heating/uk";
         String key = "homeType=flat&fuel=coal";
         String values = "numberOfBedrooms=4&heatingType=open fires&age=pre 1930";
@@ -146,7 +147,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testLighting() {
+    public static void testLighting() throws AmeeException {
         path = "/home/lighting";
         String key = "type=lel";
         String values = "noOfLightBulbs=100";
@@ -155,7 +156,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testTelevisions() {
+    public static void testTelevisions() throws AmeeException {
         path = "/home/appliances/televisions/generic";
         String key = "type=LCD&size=32\"";
         String values = "hoursPerMonth=100";
@@ -164,7 +165,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testPlaneExtra() {
+    public static void testPlaneExtra() throws AmeeException {
         path = "/transport/plane/generic";
         String key = "type=long haul&size=return";
         String values = "journeysPerYear=2&numberOfPassengers=10";
@@ -179,7 +180,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testKitchenExtra() {
+    public static void testKitchenExtra() throws AmeeException {
         path = "/home/appliances/kitchen/generic";
         String key = "device=tumble dryer&rating=standard&age=-&temperature=-";
         String values = "cyclesPerMonth=10";
@@ -194,7 +195,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testBus() {
+    public static void testBus() throws AmeeException {
         path = "/transport/bus/generic";
         String key = "type=local";
         String values = "distanceKmPerMonth=1000";
@@ -215,7 +216,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testTrain() {
+    public static void testTrain() throws AmeeException {
         path = "/transport/train/generic";
         String key = "type=international";
         String values = "distanceKmPerMonth=1000";
@@ -236,7 +237,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testTaxi() {
+    public static void testTaxi() throws AmeeException {
         path = "/transport/taxi/generic/perpassenger";
         String key = "type=typical";
         String values = "distanceKmPerMonth=1000";
@@ -251,7 +252,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testNone() {
+    public static void testNone() throws AmeeException {
         path = "/home/appliances/kitchen/generic";
         String key = "device=microwave&rating=-&age=-&temperature=-";
         String values = "name=none";
@@ -274,7 +275,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testCarExtra() {
+    public static void testCarExtra() throws AmeeException {
         path = "/transport/car/generic";
         String key = "fuel=petrol&size=small";
         String values = "useTypicalDistance=true";
@@ -283,7 +284,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testMotorcycleExtra() {
+    public static void testMotorcycleExtra() throws AmeeException {
         path = "/transport/motorcycle/generic";
         String key = "fuel=petrol&size=small";
         String values = "useTypicalDistance=true";
@@ -292,7 +293,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testPublicTransport() {
+    public static void testPublicTransport() throws AmeeException {
         //test number of passengers
         path = "/transport/bus/generic";
         String key = "type=local";
@@ -316,7 +317,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testStandby() {
+    public static void testStandby() throws AmeeException {
         path = "/home/appliances/computers/generic";
         String key = "device=standby&rating=-";
         String values = "name=standby&onStandby=always";
@@ -331,7 +332,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testTelevisionsRanges() {
+    public static void testTelevisionsRanges() throws AmeeException {
         path = "/home/appliances/televisions/generic/ranges";
         String key = "type=lcd&size=29-33";
         String values = "hoursPerMonth=100";
@@ -340,7 +341,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testStandbyWithTVs() {
+    public static void testStandbyWithTVs() throws AmeeException {
         path = "/home/appliances/entertainment/generic";
         String key = "device=standby&rating=-";
         String values = "name=includes tvs&onStandby=sometimes";
@@ -349,7 +350,7 @@ public class MyDataCategory {
         System.err.println(path + "," + key + "," + values + "," + kgCO2);
     }
 
-    public static void testCarLPG() {
+    public static void testCarLPG() throws AmeeException {
         path = "/transport/car/generic";
         String key = "fuel=lpg&size=medium";
         String values = "useTypicalDistance=true";
@@ -366,7 +367,7 @@ public class MyDataCategory {
     }
     private static String profileUid,  path;
 
-    public static void test() {
+    public static void test() throws AmeeException {
         profileUid = Main.createProfile();
         String metadataUid;
         metadataUid = "86D02FBD95AE";//same on stage and live and even dev!
@@ -408,7 +409,7 @@ public class MyDataCategory {
         testCarLPG();
     }
 
-    public static boolean fetchItemDefFromAPIAndWriteToCSV(int site, String path) {
+    public static boolean fetchItemDefFromAPIAndWriteToCSV(int site, String path) throws AmeeException {
         File csvDir = new File(ApiTools.csvDir, path);
         ItemDefinition id = ItemDefinition.fetchItemDefFromAPI(site, path);
 
@@ -421,8 +422,8 @@ public class MyDataCategory {
 
     public static void main(String[] args) {
         int site = DataCategory.LIVE;
-        Main.login = args[0];
-        Main.password = args[1];
+        Main.setLogin(args[0]);
+        Main.setPassword(args[1]);
         //Main.proxy=new Proxy(Proxy.Type.SOCKS, new InetSocketAddress("localhost", 1080));
         //Main.ip="85.133.58.72";
         //isAdmin=true;

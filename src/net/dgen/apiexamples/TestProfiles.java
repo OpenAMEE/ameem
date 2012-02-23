@@ -8,6 +8,7 @@
  */
 package net.dgen.apiexamples;
 
+import com.amee.client.AmeeException;
 import com.twicom.qdparser.TaggedElement;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -25,12 +26,12 @@ public class TestProfiles extends Main {
     public TestProfiles() {
     }
 
-    public TestProfiles(String profileUid) {
+    public TestProfiles(String profileUid) throws AmeeException {
         this.profileUid = profileUid;
         profileMap = getProfileMap(profileUid);
     }
 
-    public String createTestProfile() {
+    public String createTestProfile() throws AmeeException {
         String response;
         double kgCO2perMonth, total = 0.;
 
@@ -210,10 +211,10 @@ public class TestProfiles extends Main {
         return value;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AmeeException {
         //IMPORTANT: Remember to change these to your login details
-        Main.login = "***USERNAME***";
-        Main.password = "***PASSWORD***";
+        Main.setLogin("***USERNAME***");
+        Main.setPassword("***PASSWORD***");
         //Main.debug=true;
 
         //Fetch existing

@@ -8,6 +8,7 @@
  */
 package net.dgen.apitools;
 
+import com.amee.client.AmeeException;
 import com.twicom.qdparser.TaggedElement;
 import java.io.*;
 import java.nio.charset.Charset;
@@ -40,21 +41,21 @@ public class ApiTools {
         
         currentSite = site;
         if (site == DataCategory.STAGE) {
-            Main.host = "stage.amee.com";
+            Main.setHost("stage.amee.com");
             cachePath = new File("/home/nalu/dev/amee/uid_cache/stage");
             if (isAdmin) {
                 adminEnvironmentUid = "5F5887BCF726";
                 valueDefMap = ItemDefinitionSync.stageValueDefMap;
             }
         } else if (site == DataCategory.SANDBOX) {
-            Main.host = "sandbox.amee.com";
+            Main.setHost("sandbox.amee.com");
             cachePath = new File("/home/nalu/dev/amee/uid_cache/sandbox");
             if (isAdmin) {
                 adminEnvironmentUid = "5F5887BCF726";
                 valueDefMap = ItemDefinitionSync.stageValueDefMap;
             }
         } else if (site == DataCategory.SCIENCE) {
-            Main.host = "platform-science.amee.com";
+            Main.setHost("platform-science.amee.com");
             cachePath = new File("/home/nalu/dev/amee/uid_cache/sandbox");
             if (isAdmin) {
                 adminEnvironmentUid = "5F5887BCF726";
@@ -62,7 +63,7 @@ public class ApiTools {
             }
         }
         else if (site == DataCategory.LIVE) {
-            Main.host = "live.amee.com";
+            Main.setHost("live.amee.com");
             cachePath = new File("/home/nalu/dev/amee/uid_cache/live");
             if (isAdmin) {
                 //fortunately, these are the same for live as stage! Might no always be so tho.
@@ -70,7 +71,7 @@ public class ApiTools {
                 valueDefMap = ItemDefinitionSync.liveValueDefMap;
             }
         } else if (site == DataCategory.JB) {
-            Main.host = "jb.live.amee.com";
+            Main.setHost("jb.live.amee.com");
             cachePath = new File("/home/nalu/dev/amee/uid_cache/live");
             if (isAdmin) {
                 //fortunately, these are the same for live as stage! Might no always be so tho.
@@ -78,10 +79,10 @@ public class ApiTools {
                 valueDefMap = ItemDefinitionSync.liveValueDefMap;
             }
         } else if (site == DataCategory.DEFRA) {
-            Main.host = "defra.co2.dgen.net";
+            Main.setHost("defra.co2.dgen.net");
             cachePath = new File("/home/nalu/dev/amee/uid_cache/defra");
         } else if (site == DataCategory.DEV) {
-            Main.host = "platform-dev.amee.com";
+            Main.setHost("platform-dev.amee.com");
             cachePath = new File("/home/nalu/dev/amee/uid_cache/dev");
             if (isAdmin) {
                 //fortunately, these are the same for live as stage! Might no always be so tho.
@@ -89,12 +90,12 @@ public class ApiTools {
                 valueDefMap = ItemDefinitionSync.stageValueDefMap;
             }
         } else if (site==DataCategory.FREE) {
-            Main.host = freeHost;
+            Main.setHost(freeHost);
             cachePath = new File("/home/nalu/dev/amee/uid_cache/stage");
             if (isAdmin) {
                 adminEnvironmentUid = "5F5887BCF726";
                 valueDefMap = ItemDefinitionSync.stageValueDefMap;
-                Main.host=freeAdminHost;
+                Main.setHost(freeAdminHost);
             }
             return;
         } else {
@@ -104,11 +105,11 @@ public class ApiTools {
 
         if (isAdmin) {
             if(site == DataCategory.LIVE){
-                Main.host="admin-live.amee.com";
+                Main.setHost("admin-live.amee.com");
             } else if (site != DataCategory.DEV && site != DataCategory.JB && site != DataCategory.SCIENCE && site != DataCategory.STAGE) {
-                Main.host = "admin." + Main.host;
+                Main.setHost("admin." + Main.getHost());
             } else if (site == DataCategory.DEV || site == DataCategory.JB || site == DataCategory.SCIENCE || site == DataCategory.STAGE) {
-                Main.host = "admin-" + Main.host;
+                Main.setHost("admin-" + Main.getHost());
             }
         }
     }
@@ -143,7 +144,7 @@ public class ApiTools {
         }
     }
 
-    public static ArrayList getDataItemsForDrill(String path, String drill) {
+    public static ArrayList getDataItemsForDrill(String path, String drill) throws AmeeException {
         ArrayList uidAl = new ArrayList();
         //System.err.println("drill="+drill);
         String response = Main.sendRequest(
@@ -195,7 +196,7 @@ public class ApiTools {
     public static String lastDataItemUid;
 
     public static String getDataItemFromKeyMap(
-            String path, Map keyMap) {
+            String path, Map keyMap) throws AmeeException {
         //System.err.println("Getting data item: "+path+" : "+key);
         double result = Double.NaN;
         //Now search for relevant data uid
@@ -214,7 +215,7 @@ public class ApiTools {
         return getDataItemFromUid(path, uid);
     }
 
-    public static String getDataItemFromUid(String path, String uid) {
+    public static String getDataItemFromUid(String path, String uid) throws AmeeException {
         String request = "GET /data" + path + "/" + uid;
         //System.err.println("request = "+request);
         String response = Main.sendRequest(request, "");
@@ -225,7 +226,7 @@ public class ApiTools {
         return response;
     }
 
-    public static boolean updateDataItem(String path, Map keyMap, String values, boolean update) {
+    public static boolean updateDataItem(String path, Map keyMap, String values, boolean update) throws AmeeException {
         //Now search for relevant data uid
         //String uid = Main.getDataUid(path,searchList);
         String uid = AmeeXMLHelper.getDataUid(path, keyMap);
@@ -257,7 +258,7 @@ public class ApiTools {
         return true;
     }
 
-    public static boolean createDataItem(String apiPath, String postString, boolean update) {
+    public static boolean createDataItem(String apiPath, String postString, boolean update) throws AmeeException {
         String request = "POST /data" + apiPath;
         System.err.println("    " + request + "\n" + "    " + postString);
         if (update) {
@@ -277,7 +278,7 @@ public class ApiTools {
         return true;
     }
 
-    public static boolean batchDataItems(String method, String apiPath, String xml, boolean update) {
+    public static boolean batchDataItems(String method, String apiPath, String xml, boolean update) throws AmeeException {
         String request = method + " /data" + apiPath;
         System.err.println("    " + request + "\n" + "    " + xml);
         if (update) {

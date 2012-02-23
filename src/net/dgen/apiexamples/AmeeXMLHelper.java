@@ -9,6 +9,7 @@
 
 package net.dgen.apiexamples;
 
+import com.amee.client.AmeeException;
 import com.twicom.qdparser.*;
 import java.util.*;
 
@@ -133,7 +134,7 @@ public class AmeeXMLHelper {
      *  drill choices and the values are the choices.
      *  @return The data item uid is return, null if not found.
      */
-    public static String getDataUid(String path, Map keyMap){
+    public static String getDataUid(String path, Map keyMap) throws AmeeException{
         path+="/drill?"+getDrillString(keyMap);
         String xml = Main.sendRequest("GET /data"+path,"",false);
         //System.err.println("path="+path);

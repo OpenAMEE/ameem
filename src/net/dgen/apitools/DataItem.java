@@ -4,6 +4,7 @@
  */
 package net.dgen.apitools;
 
+import com.amee.client.AmeeException;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -93,7 +94,7 @@ public class DataItem {
 
     /** Loads values from the API.
      *  @return A suggested action, POST if item wasn't present in API */
-    int loadValuesFromAPI() {
+    int loadValuesFromAPI() throws AmeeException {
         int action = DataCategory.NOTHING;
         apiValues = new String[dataCategory.itemNames.length];
         String response;

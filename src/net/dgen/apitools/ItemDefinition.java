@@ -4,6 +4,7 @@
  */
 package net.dgen.apitools;
 
+import com.amee.client.AmeeException;
 import com.twicom.qdparser.TaggedElement;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -196,7 +197,7 @@ public class ItemDefinition {
         }
 
         /** Loads the defaultValue and choices. */
-        private boolean loadFromAPI() {
+        private boolean loadFromAPI() throws AmeeException {
             boolean success = false;
             String request = "GET /admin/itemDefinitions";
             request += "/" + dataItemDefUid + "/itemValueDefinitions/" + uid;
@@ -373,7 +374,7 @@ public class ItemDefinition {
         return missingSet;
     }
 
-    private String fetchDefinitionUid() {
+    private String fetchDefinitionUid() throws AmeeException {
         String request;
         request = "GET /data" + path;
         String response = Main.sendRequest(request, "");
@@ -531,7 +532,7 @@ public class ItemDefinition {
         return success;
     }
 
-    private boolean loadFromAPI() {
+    private boolean loadFromAPI() throws AmeeException {
         boolean success = false;
         String request;
         request = "GET /admin/itemDefinitions";
@@ -557,7 +558,7 @@ public class ItemDefinition {
         return success;
     }
 
-    private boolean loadValuesFromAPI() {
+    private boolean loadValuesFromAPI() throws AmeeException {
         boolean success = false;
         String request = "GET /admin/itemDefinitions";
         request += "/" + dataItemDefUid + "/itemValueDefinitions";
@@ -607,7 +608,7 @@ public class ItemDefinition {
         }
     }
 
-    private boolean loadAlgorithmFromAPI() {
+    private boolean loadAlgorithmFromAPI() throws AmeeException {
         boolean success = false;
         String request = "GET /admin/itemDefinitions";
         request += "/" + dataItemDefUid + "/algorithms";
@@ -651,7 +652,7 @@ public class ItemDefinition {
     /** This method should be used to fetch the item def from the API.
      *  @return null if path has no data item def
      */
-    public static ItemDefinition fetchItemDefFromAPI(int site, String path) {
+    public static ItemDefinition fetchItemDefFromAPI(int site, String path) throws AmeeException {
         boolean saveIsAdmin = ApiTools.isAdmin;
         int saveSite = ApiTools.currentSite;
 

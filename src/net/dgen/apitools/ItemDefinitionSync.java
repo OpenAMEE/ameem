@@ -4,6 +4,7 @@
  */
 package net.dgen.apitools;
 
+import com.amee.client.AmeeException;
 import com.twicom.qdparser.TaggedElement;
 import java.io.File;
 import java.util.ArrayList;
@@ -74,7 +75,7 @@ public class ItemDefinitionSync {
         return success;
     }
 
-    static String sendRequest(String request, String body) {
+    static String sendRequest(String request, String body) throws AmeeException {
         String response;
         if (testMode) {
             System.err.println("TEST Mode (no change to AMEE):\n" + request + "\n" + body);
@@ -86,7 +87,7 @@ public class ItemDefinitionSync {
         return response;
     }
 
-    private boolean create() {
+    private boolean create() throws AmeeException {
         boolean success = false;
         String request;
         request = "POST /admin/itemDefinitions";
@@ -131,7 +132,7 @@ public class ItemDefinitionSync {
     }
 
     /** The drilldown can only be updated, as it's part of the item definition in AMEE. */
-    private boolean updateDrillDown(boolean isCreate) {
+    private boolean updateDrillDown(boolean isCreate) throws AmeeException {
         String request;
         request = "PUT /admin/itemDefinitions";
         request += "/" + toItemDef.dataItemDefUid;
@@ -197,7 +198,7 @@ public class ItemDefinitionSync {
         return body;
     }
 
-    private boolean createValue(ItemDefinition.ValueDefinition vd) {
+    private boolean createValue(ItemDefinition.ValueDefinition vd) throws AmeeException {
         String request;
         request = "POST /admin/itemDefinitions";
         request += "/" + toItemDef.dataItemDefUid + "/itemValueDefinitions";
@@ -211,7 +212,7 @@ public class ItemDefinitionSync {
         return isResponseOK(sendRequest(request, body));
     }
 
-    private boolean updateValue(String uid, ItemDefinition.ValueDefinition vd) {
+    private boolean updateValue(String uid, ItemDefinition.ValueDefinition vd) throws AmeeException {
         String request;
         request = "PUT /admin/itemDefinitions";
         request += "/" + toItemDef.dataItemDefUid + "/itemValueDefinitions/" + uid;
@@ -231,7 +232,7 @@ public class ItemDefinitionSync {
     return isResponseOK(sendRequest(request, ""));*/
     }
 
-    private boolean createAlgorithm(String name, String content) {
+    private boolean createAlgorithm(String name, String content) throws AmeeException {
         String request;
         request = "POST /admin/itemDefinitions";
         request += "/" + toItemDef.dataItemDefUid + "/algorithms";
@@ -241,7 +242,7 @@ public class ItemDefinitionSync {
         return isResponseOK(sendRequest(request, body));
     }
 
-    private boolean updateAlgorithm() {
+    private boolean updateAlgorithm() throws AmeeException {
         String request;
         request = "PUT /admin/itemDefinitions";
         request += "/" + toItemDef.dataItemDefUid + "/algorithms/" + toItemDef.algorithmUid;
@@ -293,7 +294,7 @@ public class ItemDefinitionSync {
      *  Those have to be done manually.
      * @return
      */
-    private boolean update() {
+    private boolean update() throws AmeeException {
         boolean success = true, overallSuccess = true;
         if (!fromItemDef.drillDown.equals(toItemDef.drillDown)) {
             success = updateDrillDown(false);
@@ -360,7 +361,7 @@ public class ItemDefinitionSync {
     }
 
     /** Creates the ItemDef in the API. */
-    public static boolean createInAPI(int site, ItemDefinition itemDef) {
+    public static boolean createInAPI(int site, ItemDefinition itemDef) throws AmeeException {
         boolean success;
         ApiTools.isAdmin = true;
         ApiTools.init(site);
@@ -378,7 +379,7 @@ public class ItemDefinitionSync {
      * @param path Path on API to look up the current data item def to update
      * @return
      */
-    public static boolean updateInAPI(int site, File csvFile, String path) {
+    public static boolean updateInAPI(int site, File csvFile, String path) throws AmeeException {
         boolean success = false;
 
         boolean saveIsAdmin = ApiTools.isAdmin;
@@ -411,7 +412,7 @@ public class ItemDefinitionSync {
      * @param path Path on API to look up the current data item def to check against
      * @return true if they are the same or if category doesn't have an item def in api
      */
-    public static boolean checkInAPI(int site, File csvFile, String path) {
+    public static boolean checkInAPI(int site, File csvFile, String path) throws AmeeException {
         boolean isSame = false;
 
         apiItemDef = ItemDefinition.fetchItemDefFromAPI(site, path);
@@ -445,7 +446,7 @@ public class ItemDefinitionSync {
      * @param save If true, the api def is saved locally if the item def differs
      * or doesn't exist locally.
      */
-    public static void recurseSaveFromAPI(int site, String path, boolean save) {
+    public static void recurseSaveFromAPI(int site, String path, boolean save) throws AmeeException {
         File dir = new File(ApiTools.csvDir, path);
         File csvFile = new File(dir, "itemdef.csv");
         System.err.println("======= " + path);
@@ -471,9 +472,9 @@ public class ItemDefinitionSync {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        Main.login = args[0];
-        Main.password = args[1];
+    public static void main(String[] args) throws AmeeException {
+        Main.setLogin(args[0]);
+        Main.setPassword(args[1]);
         int site = DataCategory.STAGE;
 
         ApiTools.csvDir = new File("/home/jamespjh/devel/amee/svn.amee.com/internal/api_csvs");

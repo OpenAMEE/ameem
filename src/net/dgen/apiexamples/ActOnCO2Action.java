@@ -19,6 +19,7 @@ will be useful,
  */
 package net.dgen.apiexamples;
 
+import com.amee.client.AmeeException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -502,12 +503,12 @@ public class ActOnCO2Action {
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws AmeeException {
         //create the actions
         initActions();
 
-        Main.login = args[0];
-        Main.password = args[1];
+        Main.setLogin(args[0]);
+        Main.setPassword(args[1]);
 
         String profileUid = "949B92E176C8";
         TestProfiles profile = new TestProfiles(profileUid);
