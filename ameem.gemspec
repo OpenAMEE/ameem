@@ -1,15 +1,15 @@
 require 'rake'
 $gemspec=Gem::Specification.new do |s|
   s.name = "ameem"
-  s.version = "1.5.0"
-  s.date = "2010-11-30"
+  s.version = "1.5.1"
+  s.date = "2012-02-23"
   s.summary = "Command line tool for the amee admin API"
-  s.email = "james.hetherington@amee.com"
+  s.email = "james@amee.com"
   s.homepage = "http://www.amee.com"
   s.has_rdoc = true
   s.authors = ["James Smith", "James Hetherington", "Andrew Berkeley", "Andrew Conway"]
   s.files = FileList["lib/**/*.rb", "bin/*", "[A-Z]*",
-    "dist/AMEEM.jar","config/*.yml"].to_a-["config/ameem.yml"]
+    "dist/AMEEM.jar","dist/lib/*.jar","config/*.yml"].to_a-["config/ameem.yml"]
   s.bindir="#{$root}bin"
   s.executables = ['ameem','ameem_configure']
   s.add_dependency("activesupport", "~> 2.3.5")
