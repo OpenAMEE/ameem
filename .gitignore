@@ -1,1 +1,15 @@
 *.gem
+
+.DS_Store
+.rakeTasks
+build/
+.idea/
+*.iml
+dist/javadoc
+
+config/ameem.yml
+
+nbproject/private/private.properties
+dist
+gems/
+nbproject/private/private.xml

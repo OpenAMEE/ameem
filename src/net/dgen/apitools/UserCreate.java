@@ -4,6 +4,7 @@
  */
 package net.dgen.apitools;
 
+import com.amee.client.AmeeException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class UserCreate {
         email = ss[3];
     }
 
-    public boolean create() {
+    public boolean create() throws AmeeException {
         boolean success = false;
         String request, response;
 
@@ -53,7 +54,7 @@ public class UserCreate {
         return success;
     }
 
-    private static boolean createFromCSV(File file) {
+    private static boolean createFromCSV(File file) throws AmeeException {
         boolean success = false;
         BufferedReader br = ApiTools.getBufferedReader(file);
         try {
@@ -75,7 +76,7 @@ public class UserCreate {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AmeeException {
         int site = DataCategory.STAGE;
         ApiTools.isAdmin = true;
         ApiTools.init(site);

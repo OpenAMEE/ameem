@@ -24,8 +24,14 @@ begin
       print "Also commit to #{alt_server}?[Yes]\n"
       return if ($stdin.gets=~/[nN]/)  
     end
+    
     print "Also committing to #{alt_server}\n"
-    run(ARGV.map{|x| x.gsub(server,alt_server)})
+    if ARGV.include?("-s") || ARGV.include?("--server")
+      new_args = ARGV.map{|x| x.gsub("#{server}","#{alt_server}")}
+    else
+      new_args = ARGV + ["-s",alt_server]
+    end
+    run(new_args)
   end
 rescue RuntimeError => error
   print error.message+"\n Run ameem --help for usage\n"
