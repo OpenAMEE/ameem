@@ -95,7 +95,7 @@ public class Main {
     }
 
     public static String sendRequest(String path, String body, boolean includeResponseHeader) throws AmeeException {
-        return sendRequest(path, body, "Content-Type: application/x-www-form-urlencoded", includeResponseHeader);
+        return sendRequest(path, body, "application/x-www-form-urlencoded", includeResponseHeader);
     }
 
     public static String sendRequest(String method_and_path, String body, String contentType, boolean includeResponseHeader) throws AmeeException {

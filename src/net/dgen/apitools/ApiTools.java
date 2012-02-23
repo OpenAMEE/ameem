@@ -282,7 +282,7 @@ public class ApiTools {
         String request = method + " /data" + apiPath;
         System.err.println("    " + request + "\n" + "    " + xml);
         if (update) {
-            String response = Main.sendRequest(request, xml, "Content-Type:application/xml", true);
+            String response = Main.sendRequest(request, xml, "application/xml", true);
             if (response.indexOf("200 OK") < 0) {
                 System.err.println("ERROR: failed to batch " + method + " data items:\n" + request + "\n" + response);
                 return false;
