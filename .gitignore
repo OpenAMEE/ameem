@@ -10,3 +10,4 @@ dist/javadoc
 config/ameem.yml
 
 nbproject/private/private.properties
+dist
