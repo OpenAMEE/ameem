@@ -18,6 +18,8 @@ package net.dgen.apiexamples;
 import com.amee.client.AmeeException;
 import com.amee.client.service.AmeeContext;
 import com.amee.client.util.Choice;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.params.HttpClientParams;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpMethodBase;
 import org.apache.commons.httpclient.methods.DeleteMethod;
@@ -58,6 +60,15 @@ public class AmeeInterface implements Serializable {
     
     private AmeeInterface() {
         super();
+        HttpClientParams clientParams = new HttpClientParams();
+		// Set a timeout on connections so that long requests can happen OK.
+		// I have NO idea why this works. I set it to a large number, 600 seconds,
+		// and things still timed out. I set it to 10ms and suddenly everything works, so:
+		// HACK
+        clientParams.setSoTimeout(10);
+		// END HACK
+        HttpClient client = new HttpClient(clientParams);		
+		ameeContext.setClient(new HttpClient(clientParams));
     }
     
     // *** Authentication ***
