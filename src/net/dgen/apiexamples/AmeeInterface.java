@@ -18,11 +18,15 @@ package net.dgen.apiexamples;
 import com.amee.client.AmeeException;
 import com.amee.client.service.AmeeContext;
 import com.amee.client.util.Choice;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.params.HttpClientParams;
+import org.apache.commons.httpclient.params.HttpMethodParams;
 import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpMethodBase;
 import org.apache.commons.httpclient.methods.DeleteMethod;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.DefaultHttpMethodRetryHandler;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.json.JSONException;
@@ -58,6 +62,7 @@ public class AmeeInterface implements Serializable {
     
     private AmeeInterface() {
         super();
+		ameeContext.setClient(new HttpClient());
     }
     
     // *** Authentication ***
@@ -223,7 +228,12 @@ public class AmeeInterface implements Serializable {
     // *** Utility ***
     
     private void execute(HttpMethodBase method) throws IOException, AmeeException {
+		// disable built-in retry and set timeout
+		method.getParams().setSoTimeout(600000);
+		method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, new DefaultHttpMethodRetryHandler(0, false));
+		// Use our own retry logic
         for (int i = 0; i < ATTEMPTS; i++) {
+			System.out.println("Executing request (" + i + "): " + method.getURI());
             ameeContext.getClient().executeMethod(method);
             switch (method.getStatusCode()) {
                 case SUCCESS_OK:
@@ -260,9 +270,10 @@ public class AmeeInterface implements Serializable {
                     break;
                 default:
                     // allow retries - like with 500s or something else
+					System.out.println("Request failed (" + method.getStatusCode() + " " + method.getURI() + ").");
                     break;
             }
         }
-        throw new AmeeException("Could not execute request (" + method.getStatusCode() + " " + method.getURI() + ").");
+        throw new AmeeException("Exceeded max retries: (" + method.getURI() + ").");
     }
 }

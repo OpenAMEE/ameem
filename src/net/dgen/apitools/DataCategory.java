@@ -149,8 +149,8 @@ public class DataCategory {
             }
         }
         String charSet = Main.apiWriteCharSet;//"ISO-8859-1"; //was UTF-8
-        String postXML = "<?xml version=\"1.0\" encoding=\"" + charSet + "\"?>\n" + "<DataCategory>\n" + "<DataItems>\n";
-        String putXML = "<?xml version=\"1.0\" encoding=\"" + charSet + "\"?>\n" + "<DataCategory>\n" + "<DataItems>\n";
+		ArrayList<String> putItems = new ArrayList<String>();
+		ArrayList<String> postItems = new ArrayList<String>();
         Iterator iter = carbonDataMap.keySet().iterator();
         if (startIndex > 1) {
             System.err.println("SKIPPING TO " + startIndex);
@@ -177,7 +177,7 @@ public class DataCategory {
                             boolean success = false;
                             for (int tries = 0; tries < 3; tries++) {
                                 if (doBatch) {
-                                    postXML += de.getPostXML();
+                                    postItems.add(de.getPostXML());
                                     success = true;
                                 } else {
                                     success = ApiTools.createDataItem(apiPath, de.getPostString(), update);
@@ -198,7 +198,7 @@ public class DataCategory {
                                 boolean success = false;
                                 for (int tries = 0; tries < 3; tries++) {
                                     if (doBatch) {
-                                        putXML += de.getPutXML(action);
+                                        putItems.add(de.getPutXML(action));
                                         success = true;
                                     } else {
                                         success = ApiTools.updateDataItem(apiPath, de.keyMap, updatedValues, update);
@@ -228,34 +228,53 @@ public class DataCategory {
             }
             i++;
         }
-        postXML += "</DataItems>\n" + "</DataCategory>";
-        putXML += "</DataItems>\n" + "</DataCategory>";
         if (iDiff > 0 || iMissing > 0) {
+			int batchSize = 10;
             if (iDiff > 0) {
                 if (doBatch) {
-                    time = System.currentTimeMillis();
-                    System.err.println("Sending PUT batch...");
-                    boolean success = ApiTools.batchDataItems("PUT", apiPath, putXML, update);
-                    if (success) {
-                        System.err.println("...PUT batch sent successfully");
-                        System.err.println("<<<< PUT time = " + (System.currentTimeMillis() - time) / 1000);
-                    } else {
-                        System.err.println("ERROR - PUT batch failed");
-                    }
+					for (int itemStart=0; itemStart<putItems.size(); itemStart+=batchSize)
+					{
+						time = System.currentTimeMillis();
+	                    System.err.println("Sending PUT batch...");
+				        String putXML = "<?xml version=\"1.0\" encoding=\"" + charSet + "\"?>\n" + "<DataCategory>\n" + "<DataItems>\n";
+						int itemEnd = itemStart+batchSize;
+						if (itemEnd > putItems.size())
+							itemEnd = putItems.size();
+						for (String item: putItems.subList(itemStart, itemEnd))
+							putXML += item;
+				        putXML += "</DataItems>\n" + "</DataCategory>";
+	                    boolean success = ApiTools.batchDataItems("PUT", apiPath, putXML, update);
+	                    if (success) {
+	                        System.err.println("...PUT batch sent successfully");
+	                        System.err.println("<<<< PUT time = " + (System.currentTimeMillis() - time) / 1000);
+	                    } else {
+	                        System.err.println("ERROR - PUT batch failed");
+	                    }
+					}
                 }
                 System.err.println("number of updated items = " + iDiff);
             }
             if (iMissing > 0) {
                 if (doBatch) {
-                    time = System.currentTimeMillis();
-                    System.err.println("Sending POST batch...");
-                    boolean success = ApiTools.batchDataItems("POST", apiPath, postXML, update);
-                    if (success) {
-                        System.err.println("...POST batch sent successfully");
-                        System.err.println("<<<< POST time = " + (System.currentTimeMillis() - time) / 1000);
-                    } else {
-                        System.err.println("ERROR - POST batch failed");
-                    }
+					for (int itemStart=0; itemStart<postItems.size(); itemStart+=batchSize)
+					{
+	                    time = System.currentTimeMillis();
+	                    System.err.println("Sending POST batch...");
+				        String postXML = "<?xml version=\"1.0\" encoding=\"" + charSet + "\"?>\n" + "<DataCategory>\n" + "<DataItems>\n";
+						int itemEnd = itemStart+batchSize;
+						if (itemEnd > postItems.size())
+							itemEnd = postItems.size();
+						for (String item: postItems.subList(itemStart, itemEnd))
+							postXML += item;
+				        postXML += "</DataItems>\n" + "</DataCategory>";
+	                    boolean success = ApiTools.batchDataItems("POST", apiPath, postXML, update);
+	                    if (success) {
+	                        System.err.println("...POST batch sent successfully");
+	                        System.err.println("<<<< POST time = " + (System.currentTimeMillis() - time) / 1000);
+	                    } else {
+	                        System.err.println("ERROR - POST batch failed");
+	                    }
+					}
                 }
                 System.err.println("number of created items = " + iMissing);
             }

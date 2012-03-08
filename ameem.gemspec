@@ -1,8 +1,8 @@
 require 'rake'
 $gemspec=Gem::Specification.new do |s|
   s.name = "ameem"
-  s.version = "1.5.1"
-  s.date = "2012-02-23"
+  s.version = "1.5.2"
+  s.date = "2012-03-08"
   s.summary = "Command line tool for the amee admin API"
   s.email = "james@amee.com"
   s.homepage = "http://www.amee.com"
