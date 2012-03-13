@@ -16,7 +16,7 @@ module ManagesReturnValues
     return_values.values.each do |value|
       AMEE::Admin::ReturnValueDefinition.create(
         amee,@rvduid,:type=>value.label,:valuetype=>value.type.downcase,
-        :unit=>value.unit,:perUnit=>value.perunit,:default=>value.default)
+        :unit=>value.unit,:perUnit=>value.perunit,:default=>value.default,:name=>value.name)
     end
   end
   # Save return value definition to the return_valeus.csv file, renaming if necessary

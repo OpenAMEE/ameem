@@ -20,7 +20,7 @@ class ReturnValueDefinition
   # Save to a return_values.csv file
   def to_file(filename)
     CSV.open(filename,'w') do |w|
-      w << %w{label type unit per_unit default}
+      w << %w{label name type unit per_unit default}
       values.each do |value|
         value.write_csv(w)
       end
@@ -29,10 +29,17 @@ class ReturnValueDefinition
   # Load from a return_values.csv file
   def parse_csv(filename)
     @file=CSV.read(filename)
-    @file.shift #headers
+    # Read order of headers
+    headers = @file.shift
     @file.each do |line|
       next if line.length==0 || (line.length==1 && line[0]==nil)
-      value=ReturnValue.new(*line)
+      # Read fields from line based on headers
+      value=ReturnValue.new( line[headers.index('label')],
+                             line[headers.index('name') || headers.index('label')],
+                             line[headers.index('type')],
+                             line[headers.index('unit')],
+                             line[headers.index('per_unit')],
+                             line[headers.index('default')] )
       @values.push value
     end
     validate
@@ -48,7 +55,8 @@ class ReturnValueDefinition
       when "45433E48B39F"
         'DECIMAL'
       end
-      value=ReturnValue.new(avalue.type,vt,avalue.unit,avalue.perunit)
+      value=ReturnValue.new(avalue.type,avalue.type,vt,avalue.unit,avalue.perunit) # Type used twice until AMEE 
+                                                                                   # gem supports RVD names
       @values.push value
     end
     validate
@@ -67,18 +75,19 @@ end
 
 # A particular return value in an RVD file
 class ReturnValue
-  attr_reader :label,:type,:unit,:perunit,:default
-  def initialize(label,type,unit,perunit,default=false)
+  attr_reader :label,:name,:type,:unit,:perunit,:default
+  def initialize(label,name,type,unit,perunit,default=false)
     @label=label
+    @name=name
     @type=type
     @unit=unit
     @perunit=perunit
     @default=default.to_s.downcase=='true'
   end
   def write_csv(writer)
-    writer << [label,type,unit,perunit,default]
+    writer << [label,name,type,unit,perunit,default]
   end
   def inspect
-    [label,type,unit,perunit,default].inspect
+    [label,name,type,unit,perunit,default].inspect
   end
 end
