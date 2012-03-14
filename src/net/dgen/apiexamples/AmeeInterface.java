@@ -120,7 +120,7 @@ public class AmeeInterface implements Serializable {
             execute(get);
             return get.getResponseBodyAsString();
         } catch (IOException e) {
-            throw new AmeeException("Caught IOException: " + e.getMessage());
+            throw new AmeeException("Caught " + e.getClass().getName() + ": " + e.getMessage());
         } finally {
             if (get != null) {
                 get.releaseConnection();
@@ -198,7 +198,7 @@ public class AmeeInterface implements Serializable {
 
             return post.getResponseBodyAsString();
         } catch (IOException e) {
-            throw new AmeeException("Caught IOException: " + e.getMessage());
+            throw new AmeeException("Caught " + e.getClass().getName() + ": " + e.getMessage());
         } finally {
             if (post != null) {
                 post.releaseConnection();
@@ -217,7 +217,7 @@ public class AmeeInterface implements Serializable {
             // execute method and allow retries
             execute(delete);
         } catch (IOException e) {
-            throw new AmeeException("Caught IOException: " + e.getMessage());
+            throw new AmeeException("Caught " + e.getClass().getName() + ": " + e.getMessage());
         } finally {
             if (delete != null) {
                 delete.releaseConnection();
