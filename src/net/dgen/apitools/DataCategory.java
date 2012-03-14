@@ -229,7 +229,7 @@ public class DataCategory {
             i++;
         }
         if (iDiff > 0 || iMissing > 0) {
-			int batchSize = 10;
+			int batchSize = 1; // Turned right down because of timeout problems.
             if (iDiff > 0) {
                 if (doBatch) {
 					for (int itemStart=0; itemStart<putItems.size(); itemStart+=batchSize)
