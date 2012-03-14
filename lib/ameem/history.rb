@@ -53,14 +53,15 @@ module History
 
     def initialize(filename)
       @filename=filename
-      @file=CSV.open(filename,'r')
-      @drills=@file.shift[0]
-      @item_path=@file.shift[0]
-      @file.shift
+      file=CSV.open(filename,'r')
+      @drills=file.shift[0]
+      @item_path=file.shift[0]
+      file.shift
       @series=[]
-      @file.each do |line|
+      file.each do |line|
         @series.push([DateTime.parse(line[0]),line[1]])
       end
+      file.close
     end
     attr_accessor :item_path,:drills,:filename
 
