@@ -266,7 +266,8 @@ public class AmeeInterface implements Serializable {
                         throw new AmeeException("Could not authenticate (" + method.getURI() + ").");
                     }
                     ameeContext.prepareHttpMethod(method);//re-auth fix
-                    // allow retries
+                    // allow an extra retry
+					i -= 1;
                     break;
                 default:
                     // allow retries - like with 500s or something else
