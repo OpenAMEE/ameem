@@ -229,7 +229,7 @@ public class AmeeInterface implements Serializable {
     
     private void execute(HttpMethodBase method) throws IOException, AmeeException {
 		// disable built-in retry and set timeout
-		method.getParams().setSoTimeout(600000);
+		method.getParams().setSoTimeout(0); // Wait FOREVER
 		method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, new DefaultHttpMethodRetryHandler(0, false));
 		// Use our own retry logic
         for (int i = 0; i < ATTEMPTS; i++) {
