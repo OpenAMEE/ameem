@@ -134,15 +134,16 @@ class AMEEM
   attr_accessor :amee_admin # An AMEE#Connection instance to the AMEE Admin API (e.g. admin-platform-science.amee.com)
   attr_accessor :log # A Log4r logging instance to log to.
 
-  # with String argument, this is the AMEE commandline, i.e. args is an array of command line entries and switches
-  # with OpenStruct argument, behaves as a copy constructor with those options
+  # With String argument, this is the AMEE commandline, i.e. args is an array of
+  # command line entries and switches; With OpenStruct argument, behaves as a
+  # copy constructor with those options
   def initialize(args)
-    #bootstrap logger, will replace with log from options once options parsed
+    # Bootstrap logger
     @log=Log4r::Logger.new('AMEERuby')
     @log.outputters=[Log4r::StderrOutputter.new('AMEERubyStdout')]
     @log.level=Log4r::ERROR
 
-    # set up spellchecker
+    # Set up spellchecker
     @speller=Aspell.new("en_US")
     @speller.suggestion_mode = Aspell::NORMAL
 
@@ -152,13 +153,14 @@ class AMEEM
       parse_options(args)
     end
 
-    # replace the bootstrap logger
+    # Replace the bootstrap logger
     yc=Log4r::YamlConfigurator
     yc['HOME']=options.log_folder
     yc.load_yaml_file File.join(options.config_folder,'log.yml')
     @log=Log4r::Logger['Main']
     AMEE::Logger.to Log4r::Logger['Gem'] 
     Log4r::Outputter['stderr'].level=options.verbosity
+
     verbose "Selected amee servers #{options.server_url},#{options.admin_url}"
     if options.needs_connection
       @amee=AMEE::Connection.new(options.server_url,options.auser ? options.user : 'adminv2',options.password,:format=>:xml, :amee_source => 'ameem')
@@ -209,8 +211,9 @@ class AMEEM
     data.save_csv(file)
   end
 
-  #Feature control- return true if the given feature is turned on in the config file
-  #TODO - follow ruby best practice by renaming to feature?
+  # Feature control- return true if the given feature is turned on in the
+  # config file
+  # TODO - follow ruby best practice by renaming to feature?
   def feature(feat)
     servs=options.features[feat.to_s]
     verbose "Feature check: #{servs.inspect} #{options.server_code}"
@@ -218,7 +221,7 @@ class AMEEM
   end
 end
 
-# Root namespace (Object) method proxying for the AMEEM.provides class method.
+# Root namespace (Object) method proxying for the AMEEM.provides class method
 def provides *args
   AMEEM.provides *args
 end
@@ -253,8 +256,7 @@ class AMEEM
   include Changelog
 end
 
-# Root namespace (Object) method constructing an ameem object, then executing it.
+# Root namespace (Object) method constructing an ameem object, then executing it
 def ameem(args)
   AMEEM.new(args).exec
 end
-
